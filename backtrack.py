@@ -1,3 +1,8 @@
+"""
+° Alexis González Reynoso
+° Jair horeb Jiménez García
+° Eliezer Mora González
+"""
 def es_seguro(tablero, fila, col):
     # Verificar la columna
     for i in range(fila):
@@ -17,19 +22,19 @@ def es_seguro(tablero, fila, col):
     return True
 
 def resolver_8_reinas(tablero, fila):
-    if fila >= len(tablero):
+    if fila >= len(tablero): # Si hemos llenado todas las filas, hemos encontrado una solución
         return True
 
-    for col in range(len(tablero)):
-        if es_seguro(tablero, fila, col):
+    for col in range(len(tablero)): # Buscamos una columna donde pueda colocar la reina
+        if es_seguro(tablero, fila, col): # Si la columna es segura, colocamos la reina
             tablero[fila] = col
             if resolver_8_reinas(tablero, fila + 1):
                 return True
-            tablero[fila] = -1
+            tablero[fila] = -1 # Si no encontramos una solución, borramos la reina
 
     return False
 
-def imprimir_tablero(tablero):
+def imprimir_tablero(tablero): # Pues imprimir el tablero pa
     for fila in range(len(tablero)):
         linea = ""
         for col in range(len(tablero)):
@@ -40,12 +45,11 @@ def imprimir_tablero(tablero):
         print(linea)
     print("\n")
 
-def main():
-    tablero = [-1] * 8
-    if resolver_8_reinas(tablero, 0):
-        imprimir_tablero(tablero)
-    else:
-        print("No se encontró solución.")
 
-if __name__ == "__main__":
-    main()
+tablero = [-1] * 8
+if resolver_8_reinas(tablero, 0):
+    imprimir_tablero(tablero)
+else:
+    print("No se encontró solución.")
+
+
